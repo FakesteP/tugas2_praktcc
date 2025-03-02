@@ -2,14 +2,9 @@ import { Sequelize } from "sequelize";
 import db from "../config/database.js";
 
 const Note = db.define(
-  "notes",
-  {
-    title: {
-      type: Sequelize.STRING,
-    },
-    description: {
-      type: Sequelize.STRING,
-    },
+  "notes",{ 
+    title: {type: Sequelize.STRING,},
+    description: {type: Sequelize.STRING,},
   },
   {
     freezeTableName: true,
@@ -20,6 +15,6 @@ const Note = db.define(
 
 export default Note;
 
-(async ()=> {
+(async () => {
   await db.sync();
 })();
