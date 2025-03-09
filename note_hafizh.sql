@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2025 at 06:13 AM
+-- Generation Time: Mar 09, 2025 at 10:58 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `note`
+-- Database: `note_hafizh`
 --
 
 -- --------------------------------------------------------
@@ -40,8 +40,7 @@ CREATE TABLE `notes` (
 --
 
 INSERT INTO `notes` (`id`, `title`, `description`, `tanggal_dibuat`, `tanggal_diperbarui`) VALUES
-(1, 'Praktikum TCC', 'tugas harian 2, laporan tugas harian 2, tugas harian 3, laporan tugas harian 3', '2025-03-02 03:31:16', '2025-03-02 03:41:37'),
-(2, 'halo semuanya', 'asjhdlashdkljaskldjlasjdklasjkldjalsjdklasjkldjaskldjklasjdklasjkldsjakljkdlsa', '2025-03-02 05:12:02', '2025-03-02 05:12:10');
+(1, 'PRAKTIKUM 03', 'LAPORAN MENANTI', '2025-03-09 10:57:35', '2025-03-09 10:57:35');
 
 --
 -- Indexes for dumped tables
