@@ -3,6 +3,7 @@ import axios from "axios";
 import "../styles/styles.css";
 import Sidebar from "./Sidebar";
 import NoteForm from "./NoteForm";
+import { BASE_URL } from "../utils";
 
 const NoteList = () => {
   const [notes, setNotes] = useState([]);
@@ -18,7 +19,7 @@ const NoteList = () => {
 
   const getNotes = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/notes");
+      const response = await axios.get(`http://${BASE_URL}/notes`);
       setNotes(response.data);
     } catch (error) {
       console.error("Error fetching notes:", error);
@@ -27,7 +28,7 @@ const NoteList = () => {
 
   const deleteNote = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/delete-notes/${id}`);
+      await axios.delete(`http://${BASE_URL}/delete-notes/${id}`);
       setNotes(notes.filter((note) => note.id !== id));
       if (selectedNote && selectedNote.id === id) {
         setSelectedNote(null);
@@ -40,7 +41,7 @@ const NoteList = () => {
   const createNote = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/create-notes", {
+      const response = await axios.post(`http://${BASE_URL}/create-notes`, {
         title,
         description,
       });
@@ -57,7 +58,7 @@ const NoteList = () => {
     if (!selectedNote) return;
 
     try {
-      await axios.put(`http://localhost:5000/update-notes/${selectedNote.id}`, {
+      await axios.put(`http://${BASE_URL}/update-notes/${selectedNote.id}`, {
         title,
         description,
       });
