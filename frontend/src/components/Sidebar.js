@@ -4,7 +4,7 @@ const Sidebar = ({ notes, handleNoteClick, setSelectedNote, clearFields }) => {
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <h1 className="title">Notepadd --</h1>
+        <h1 className="title">Notepadd ---</h1>
         <button
           className="add-note-button"
           onClick={() => {
