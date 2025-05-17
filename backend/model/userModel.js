@@ -16,7 +16,7 @@ const User = db.define(
       allowNull: false,
     },
     refresh_token: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       allowNull: true,
     },
   },

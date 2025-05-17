@@ -50,7 +50,6 @@ const createUser = async (req, res) => {
   }
 };
 
-
 const updateUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -116,7 +115,7 @@ const loginHandler = async (req, res) => {
           safeUserData,
           process.env.ACCESS_TOKEN_SECRET,
           {
-            expiresIn: "30s",
+            expiresIn: "30m",
           }
         );
         const refreshToken = jwt.sign(
