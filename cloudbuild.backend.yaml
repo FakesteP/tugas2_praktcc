@@ -12,7 +12,7 @@ steps:
       [
         "run",
         "deploy",
-        "notes-backend-wijdan",
+        "notes-backend-hafizh",
         "--image",
         "gcr.io/$PROJECT_ID/be-hafizh",
         "--timeout",
