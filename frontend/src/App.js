@@ -4,8 +4,7 @@ import axios from "axios";
 import NoteList from "./components/NoteList";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
-
-const BASE_URL = "http://localhost:5000"; // ganti sesuai URL backend kamu
+import { BASE_URL } from "./utils";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
