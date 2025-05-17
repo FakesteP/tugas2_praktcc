@@ -1,1 +1,1 @@
-export const BASE_URL = "https://backend-hafizh-1061342868557.us-central1.run.app";
+export const BASE_URL = "http://localhost:5000";

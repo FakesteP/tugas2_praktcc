@@ -13,22 +13,40 @@ const NoteList = () => {
 
   useEffect(() => {
     getNotes();
-    const interval = setInterval(getNotes, 5000);
+    const interval = setInterval(getNotes, 5000); // refresh data setiap 5 detik
     return () => clearInterval(interval);
   }, []);
 
+  // Fungsi untuk mengambil notes dari backend dengan Authorization token
   const getNotes = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/notes`);
+      const token = localStorage.getItem("accessToken"); // ambil token dari localStorage
+      if (!token) {
+        console.warn("No access token found, please login.");
+        return;
+      }
+      const response = await axios.get(`${BASE_URL}/notes`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setNotes(response.data);
     } catch (error) {
-      console.error("Error fetching notes:", error);
+      console.error(
+        "Error fetching notes:",
+        error.response?.data || error.message
+      );
     }
   };
 
   const deleteNote = async (id) => {
     try {
-      await axios.delete(`${BASE_URL}/delete-notes/${id}`);
+      const token = localStorage.getItem("accessToken");
+      await axios.delete(`${BASE_URL}/delete-notes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setNotes(notes.filter((note) => note.id !== id));
       if (selectedNote && selectedNote.id === id) {
         setSelectedNote(null);
@@ -41,10 +59,16 @@ const NoteList = () => {
   const createNote = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${BASE_URL}/create-notes`, {
-        title,
-        description,
-      });
+      const token = localStorage.getItem("accessToken");
+      await axios.post(
+        `${BASE_URL}/create-notes`,
+        { title, description },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setTitle("");
       setDescription("");
       getNotes();
@@ -58,10 +82,16 @@ const NoteList = () => {
     if (!selectedNote) return;
 
     try {
-      await axios.put(`${BASE_URL}/update-notes/${selectedNote.id}`, {
-        title,
-        description,
-      });
+      const token = localStorage.getItem("accessToken");
+      await axios.put(
+        `${BASE_URL}/update-notes/${selectedNote.id}`,
+        { title, description },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setSelectedNote(null);
       setTitle("");
       setDescription("");

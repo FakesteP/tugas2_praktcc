@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { FaSignOutAlt } from "react-icons/fa";
 
 const NoteForm = ({
   selectedNote,
@@ -10,8 +12,34 @@ const NoteForm = ({
   updateNote,
   deleteNote,
 }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
-    <div className="note-details">
+    <div className="note-details" style={{ position: "relative" }}>
+      {/* Tombol Logout di kanan atas */}
+      <div style={{ position: "absolute", top: "10px", right: "10px" }}>
+        <button
+          onClick={handleLogout}
+          className="logout-link"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            color: "#007bff",
+          }}
+        >
+          <FaSignOutAlt /> Logout
+        </button>
+      </div>
+
       <form onSubmit={selectedNote ? updateNote : createNote}>
         <div className="form-group">
           <label>Title</label>
@@ -20,16 +48,20 @@ const NoteForm = ({
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="input-field"
+            required
           />
         </div>
+
         <div className="form-group">
           <label>Description</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className="input-field"
+            required
           />
         </div>
+
         <button type="submit" className="save-button">
           {selectedNote ? "Update Note" : "Add Note"}
         </button>

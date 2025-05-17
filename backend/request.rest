@@ -1,9 +1,83 @@
-GET http://localhost:5000/notes
+### 🔐 Variabel token (ganti setelah login)
+@token = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+### ====================================
+### 👥 USER ROUTES
+### ====================================
+
+### 👥 Get All Users
+GET http://localhost:5000/users
+Content-Type: application/json
 
 ###
 
+### 👤 Get User by ID
+GET http://localhost:5000/users/1
+Content-Type: application/json
+
+###
+
+### ➕ Create User (Register)
+POST http://localhost:5000/create-users
+Content-Type: application/json
+
+{
+  "username": "hafizh",
+  "email": "hafizh@example.com",
+  "password": "123456"
+}
+
+###
+
+### ✏️ Update User
+PUT http://localhost:5000/update-users/1
+Content-Type: application/json
+
+{
+  "username": "hafizh_akbar",
+  "email": "hafizh_updated@example.com",
+  "password": "newpassword123"
+}
+
+###
+
+### ❌ Delete User
+DELETE http://localhost:5000/delete-users/1
+Content-Type: application/json
+
+###
+
+### 🔑 Login User
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+  "username": "hafizh",
+  "password": "123456"
+}
+
+###
+
+### 🚪 Logout User (pakai verifyToken)
+POST http://localhost:5000/logout
+Authorization: {{token}}
+
+###
+
+### ====================================
+### 📌 NOTES ROUTES (semua butuh token)
+### ====================================
+
+### 🔍 Get All Notes
+GET http://localhost:5000/notes
+Authorization: {{token}}
+
+###
+
+### 🆕 Create Note
 POST http://localhost:5000/create-notes
 Content-Type: application/json
+Authorization: {{token}}
 
 {
   "title": "Note 1",
@@ -12,14 +86,18 @@ Content-Type: application/json
 
 ###
 
+### ✏️ Update Note
 PUT http://localhost:5000/update-notes/4
 Content-Type: application/json
+Authorization: {{token}}
 
 {
   "title": "Machine Legend",
-  "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  "description": "Lorem ipsum dolor sit amet..."
 }
 
 ###
 
+### ❌ Delete Note
 DELETE http://localhost:5000/delete-notes/4
+Authorization: {{token}}
