@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion"; // Add framer-motion for animations
+import { BASE_URL } from "../utils";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -15,7 +16,7 @@ const LoginForm = () => {
     setIsLoading(true);
     
     try {
-      const response = await axios.post("http://localhost:5000/login", {
+      const response = await axios.post(`${BASE_URL}/login`, {
         username,
         password,
       });

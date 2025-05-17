@@ -72,7 +72,7 @@ const RegisterForm = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/create-users", {
+      await axios.post(`${BASE_URL}/create-users`, {
         username,
         email,
         password,
