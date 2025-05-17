@@ -7,24 +7,24 @@ steps:
     args: ["push", "gcr.io/$PROJECT_ID/be-hafizh"]
 
   - name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: gcloud
     args:
-      - "run"
-      - "deploy"
-      - "be"
-      - "--image"
-      - "gcr.io/$PROJECT_ID/be-hafizh"
-      - "--timeout"
-      - "1000s"
-      - "--port"
-      - "5000"
-      - "--region"
-      - "us-central1"
-      - "--allow-unauthenticated"
-      - "--set-env-vars"
-      - |
-        ACCESS_TOKEN_SECRET=${_ACCESS_TOKEN_SECRET},
-        REFRESH_TOKEN_SECRET=${_REFRESH_TOKEN_SECRET},
-        DB_HOST=${_DB_HOST},
-        DB_NAME=${_DB_NAME},
-        DB_PASSWORD=${_DB_PASSWORD},
-        DB_USERNAME=${_DB_USERNAME}
+      [
+        "run",
+        "deploy",
+        "notes-backend-wijdan",
+        "--image",
+        "gcr.io/$PROJECT_ID/notes-backend-wijdan:${SHORT_SHA}",
+        "--timeout",
+        "1000s",
+        "--port",
+        "5000",
+        "--region",
+        "us-central1",
+        "--allow-unauthenticated",
+        "--set-env-vars",
+        "ACCESS_TOKEN_SECRET=${_ACCESS_TOKEN_SECRET},REFRESH_TOKEN_SECRET=${_REFRESH_TOKEN_SECRET},DB_HOST=${_DB_HOST},DB_NAME=${_DB_NAME},DB_PASSWORD=${_DB_PASSWORD},DB_USERNAME=${_DB_USERNAME}"
+      ]
+
+options:
+  logging: CLOUD_LOGGING_ONLY
