@@ -6,7 +6,7 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "gcr.io/$PROJECT_ID/be-hafizh"]
 
-  - name: "gcr.io/cloud-builders/gcloud"
+   - name: "gcr.io/cloud-builders/gcloud"
     entrypoint: gcloud
     args:
       [
@@ -14,7 +14,7 @@ steps:
         "deploy",
         "notes-backend-wijdan",
         "--image",
-        "gcr.io/$PROJECT_ID/notes-backend-wijdan:${SHORT_SHA}",
+        "gcr.io/$PROJECT_ID/be-hafizh",
         "--timeout",
         "1000s",
         "--port",
